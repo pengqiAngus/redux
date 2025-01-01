@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import { createStore, combineReducers, applyMiddleware, bindActionCreators } from './redux/index.js'
+        import { countReducer } from './reducer.js'
+        import { timeMiddleware, loggerMiddleware, errorMiddleware } from './middlewares.js'
+        import { addCount } from "./actions.js";
+
+        const nextReducer = combineReducers({ countState: countReducer })
+        const middleWares = applyMiddleware(timeMiddleware, loggerMiddleware, errorMiddleware)
+
+        const store = createStore(nextReducer, middleWares)
+        store.subscribe(() => {
+            console.log('订阅', store.getState())
+        })
+
+        //  store.replaceReducer(nextReducer,{}, middleWares)
+        const actions = bindActionCreators({ addCount }, store.dispatch)
+        actions.addCount(1);
+
+    </script>
+</body>
+
+</html>
