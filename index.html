@@ -10,9 +10,9 @@
 <body>
     <script type="module">
         import { createStore, combineReducers, applyMiddleware, bindActionCreators } from './redux/index.js'
-        import { countReducer } from './reducer.js'
-        import { timeMiddleware, loggerMiddleware, errorMiddleware } from './middlewares.js'
-        import { addCount } from "./actions.js";
+        import { timeMiddleware, loggerMiddleware, errorMiddleware } from './middlewares/index.js'
+        import { countReducer } from './reducers/index.js'
+        import { addCount } from "./actions/index.js";
 
         const nextReducer = combineReducers({ countState: countReducer })
         const middleWares = applyMiddleware(timeMiddleware, loggerMiddleware, errorMiddleware)

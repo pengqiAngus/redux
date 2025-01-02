@@ -1,7 +1,7 @@
 let initCountState = {
     count: 0
 }
-export const countReducer = (state, action) => {
+const countReducer = (state, action) => {
     if (state === undefined) {
         state = initCountState
     }
@@ -25,3 +25,4 @@ export const countReducer = (state, action) => {
             return state
     }   
 }
+export default countReducer
